@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <div class="container">
+  {% block pagecontent %}
+   {% for student in students %}
+   <div class = "Izena">
+      student.name
+   </div>
+   <div class = Abizenak">
+    student.surname
+   </div>
+   <div class = "Idal">
+    student.idal
+   </div>
+   {% endfor %}    
+  {% endblock %}
+</div>
+</body>
+</html>
