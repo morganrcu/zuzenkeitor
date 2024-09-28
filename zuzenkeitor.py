@@ -4,9 +4,6 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from typing import Annotated
-from typing_extensions import TypedDict
-
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
 from langchain.prompts import PromptTemplate
@@ -17,7 +14,7 @@ from langchain_ollama import ChatOllama
 path = './submissions/2/'
 
 
-model = ChatOllama(model="gemma2:2b",temperature=0)
+model = ChatOllama(model="llama3.2",temperature=0)
 
 prompt_template = PromptTemplate.from_file(os.path.join(path, "correctionprompttemplate.txt"))
 
@@ -36,11 +33,11 @@ def zuzendu_student(reference, student):
     student_path =  os.path.join(path, student)
 
     c_files = glob.glob(os.path.join(student_path,'*.c'))
-    
-    with open(c_files[0],"r") as c_file:
-        proposal = c_file.read()
-        result = zuzendu(proposal, reference)
-        print(student_id, result)
+    if(len(c_files)>0):
+        with open(c_files[0],"r") as c_file:
+            proposal = c_file.read()
+            result = zuzendu(proposal, reference)
+            print(student_id, izena_abizenak, result)
 
                        
 def main():
